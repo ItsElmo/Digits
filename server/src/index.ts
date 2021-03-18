@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import express from 'express';
 import { createConnection } from 'typeorm';
 import { ApolloServer } from 'apollo-server-express';
-import { buildSchema } from 'graphql';
+import { buildSchema } from 'type-graphql';
 import { HelloResolver } from './resolvers/HelloResolver';
 
 (async () => {
@@ -12,7 +12,7 @@ import { HelloResolver } from './resolvers/HelloResolver';
 	await createConnection();
 	const apolloServer = new ApolloServer({
 		schema: await buildSchema({
-			resolvers: [HelloResolver]
+			resolvers: [HelloResolver],
 		}),
 		context: ({ req, res }) => ({ req, res }),
 	});
